@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Browser</title>
+    <style>
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+        * {
+            font-family: "pretendard"
+        }
+
+        body {
+            background-color: #f3f3f3;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        a {
+            background-color: #fff;
+            border-radius: 16px;
+            height: 95px;
+            width: 95px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            position: relative;
+            transition: all 0.1s ease-in;
+            margin-bottom: 20px;
+        }
+
+        a:hover {
+            height: 100px;
+            width: 100px;
+        }
+
+        a img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55px;
+            height: 55px;
+        }
+
+        a label {
+            white-space: nowrap;
+            text-decoration: none;
+            color: white;
+            position: absolute;
+            top: 98px;
+            left: 50%;
+            transform: translate(-50%, 20%);
+            font-weight: 500;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        #tool_wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: center;
+        }
+
+        #work_tools,
+        #support_tools,
+        #google_tools,
+        #edutech_tools,
+        #communication_tools,
+        #etcetera_tools,
+        #ai_tools,
+        #training_tools {
+            padding: 20px;
+            width: 90%;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 95px);
+            grid-auto-rows: auto;
+            grid-column-gap: 20px;
+            grid-row-gap: 40px;
+            justify-content: left;
+            margin-left: 3.5%;
+        }
+
+        #schedule {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 680px;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #schedule iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+            transform: scale(0.9);
+            display: none;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #schedule_button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            height: 15px;
+            width: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            position: absolute;
+            left: -140px
+        }
+
+        #calendar1 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #calendar1 iframe {
+            width: 800px;
+            height: 600px;
+            border: none;
+            border-radius: 20px;
+            transform: scale(0.95);
+            display: none;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #calendar1_button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            height: 15px;
+            width: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            position: absolute;
+            left: -70px;
+        }
+
+        #calendar2 {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #calendar2 iframe {
+            width: 800px;
+            height: 600px;
+            border: none;
+            border-radius: 20px;
+            transform: scale(0.95);
+            display: none;
+            pointer-events: none;
+            z-index: 998;
+        }
+
+        #calendar2_button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            height: 15px;
+            width: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            position: absolute;
+            left: 0px;
+        }
+
+        #meals {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        #meals iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 20px;
+            transform: scale(0.8);
+            display: none;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        #meals_button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            height: 15px;
+            width: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 998;
+            position: absolute;
+            left: -210px;
+        }
+
+        #buttons {
+            position: relative;
+            margin-left: 92.5%;
+            top: 10px;
+        }
+
+        .material-icons {
+            font-size: 36px;
+            user-select: none;
+        }
+
+        #blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px);
+            z-index: 990;
+            display: none;
+            animation: fade-in 0.2s ease-in;
+        }
+
+        #container {
+            display: flex;
+            align-items: center;
+            margin-left: 30%;
+        }
+
+        #searchIcon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: default;
+            margin-right: 10px;
+        }
+
+        #searchIcon svg {
+            width: 20px;
+            height: 20px;
+            fill: #555;
+        }
+
+        #suggestionContainer {
+            display: inline-block;
+            position: relative;
+            width: 350px;
+        }
+
+        #suggestionList {
+            position: absolute;
+            z-index: 1;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 5px;
+            width: 350px;
+            display: none;
+        }
+
+        #suggestionList li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #suggestionList li.active {
+            background: #cceaff;
+        }
+
+        #suggestionList p {
+            padding: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        #container input[type="text"] {
+            width: 400px;
+            height: 50px;
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.24);
+            border-radius: 25px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        #producer li {
+            color: #999999;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        iframe {
+            animation: fade-in ease-in 0.3s;
+        }
+
+        #cards {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: none;
+        }
+
+        .card {
+            width: 90%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            display: none;
+        }
+
+        .card p {
+            white-space: pre-wrap;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #444;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="https://raw.githubusercontent.com/minseo6008/dokdo-game/refs/heads/main/images/main/%E1%84%89%E1%85%A2%E1%84%85%E1%85%A9%E1%86%B7%E1%84%80%E1%85%A9.webp"
+        style="position:fixed; top:50%; left:50%; transform:translate(-50%, -40%); width:300px; height:300px; filter: blur(2px); z-index: -1;">
+
+    <div id="tool_wrapper">
+
+        <?!= include('index'); ?>
+
+        <br>
+
+        <div id="buttons">
+            <div id="schedule_button" onclick="toggleschedule()">
+                <i class="material-icons" id="schedule_icon">schedule</i>
+                <b
+                    style="position:absolute; top:40px; left:0px; width:50px; font-size:13px; font-weight: 600; color: #2f2f2f;">시간표</b>
+            </div>
+
+            <div id="schedule">
+                <iframe
+                    src="https://script.google.com/macros/s/AKfycbxm8yc4n0eJd1YrhI8c3TGbpOnBFuAvxHqsMEaYZTVmpmafQz4DmgTFmUsi3YwCusW-Rg/exec"></iframe>
+            </div>
+
+            <div id="calendar1_button" onclick="toggleCalendar1()">
+                <i class="material-icons" id="calendar1_icon">calendar_today</i>
+                <b
+                    style="position:absolute; top:40px; left:-13px; width:60px; font-size:13px; font-weight: 600; color: #2f2f2f">학생
+                    캘린더</b>
+            </div>
+
+            <div id="calendar1">
+                <iframe
+                    src="https://calendar.google.com/calendar/u/0/embed?color=%234986e7&src=c_75e632ca831edd3bc3f5ca852150b09b45e4998707845df6c51e60b56c3d179a@group.calendar.google.com"></iframe>
+            </div>
+
+            <div id="calendar2_button" onclick="toggleCalendar2()">
+                <i class="material-icons" id="calendar2_icon">calendar_today</i>
+                <b
+                    style="position:absolute; top:40px; left:-17px; width:80px; font-size:13px; font-weight: 600; color: #2f2f2f;">
+                    교직원 캘린더</b>
+            </div>
+
+            <div id="calendar2">
+                <iframe
+                    src="https://calendar.google.com/calendar/u/0/embed?color=%23fad165&src=c_fe870d12cac9cb4798fd8177b58beb13ab8f845cab5b769c2accca852bebe924@group.calendar.google.com"></iframe>
+            </div>
+
+            <div id="meals_button" onclick="togglemeals()">
+                <i class="material-icons" id="meals_icon">restaurant_menu</i>
+                <p
+                    style="position:absolute; top:30px; left:0px; width:50px; font-size:13px; font-weight: 600; color: #2f2f2f;">
+                    급식표</p>
+            </div>
+
+            <div id="meals">
+                <iframe
+                    src="https://script.google.com/macros/s/AKfycbzrgy7_je7dGbnQJjzzcqKJMHjB-QWqHZMVMcVVqmJ-ZAylvqknrD5IsvgSRvn0X6imow/exec"></iframe>
+            </div>
+        </div>
+
+        <div id="container">
+            <div id="searchIcon" title="검색">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.11 
+                 5.59 12.52 3 9.5 3S3.89 5.59 3.89 8.89s2.59 5.89 
+                 5.61 5.89a6.47 6.47 0 005.34-1.48l.27.28v.79l4.25 
+                 4.25c.39.39 1.02.39 1.41 0s.39-1.02 0-1.41L15.5 
+                 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 
+                 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+            </div>
+
+            <div id="suggestionContainer">
+                <input type="text" id="inputField" placeholder="웹 검색" oninput="showSuggestions()"
+                    onkeydown="checkEnterKey(event)" autocomplete="off" />
+                <ul id="suggestionList"></ul>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div id="work_tools">
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fsje.eduptl.kr%2Fbpm_man_mn00_001.do&sa=D&sntz=1&usg=AOvVaw1_Dd48k3NL_ee-G1E9oJU6"><img
+                    src="https://lh3.googleusercontent.com/d/1oMtpZLPp11WLPWP-fNnRdH1HdikzE7DC"><label>업무포털</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fklef.sje.go.kr%2Fkeris_ui%2Flogin.do&sa=D&sntz=1&usg=AOvVaw2HPVKt88AjwOf5X8jf3jnF"><img
+                    src="https://lh3.googleusercontent.com/d/1Hr7P2fKdoch-YpFSEJ5eK1vkcG9uCP__"
+                    style="width: 70px; height:70px;"><label>에듀파인</label></img>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fsje.neis.go.kr%2F&sa=D&sntz=1&usg=AOvVaw1Lfppee94c6iSfNsHJ-6r6"><img
+                    src="https://lh3.googleusercontent.com/d/1IT6vtsbmmGRn80U-gOKvXBPm-GVos6YL"
+                    style="width:70px; height: 70px;"><label>나이스</label></img>
+            </a>
+
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fevpn.sje.go.kr%2Fcustom%2Findex.html&sa=D&sntz=1&usg=AOvVaw1SvRGL3xzocVDh2c1xeRla"><img
+                    src="https://lh3.googleusercontent.com/d/1HE4_TflAz2vqHWtxbruU4vWdVdEXuGLw"><label>EVPN</label></img>
+            </a>
+
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.sje.go.kr%2Fsje%2Findex.do&sa=D&sntz=1&usg=AOvVaw1Y6ZIq5rMamtCm1atw4Ehg"><img
+                    src="https://lh3.googleusercontent.com/d/1Sm2vMWY6yDK1FFJQoi1ZUDVOwfJ8shZZ"><label>세종교육청</label></img>
+            </a>
+
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fsaerom.sjeduhs.kr%2Fsaerom-h%2Fmain.do%3Fsso%3Dok&sa=D&sntz=1&usg=AOvVaw1iYQCepHNIVBX9usCcmu74"><img
+                    src="https://lh3.googleusercontent.com/d/1tnV0wRPNqbLQIsiKZCWlrUzieZvttGdq"><label>새롬고등학교</label></img>
+            </a>
+
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.school-life.co.kr%2Fslp%2Findex.do&sa=D&sntz=1&usg=AOvVaw241fgyUCNKvNTZi_huQg5T"><img
+                    src="https://lh3.googleusercontent.com/d/1jDRETQPSiO_I_K6CYxNIraI_wHAOTc_y"><label>그린마일리지</label></img>
+            </a>
+
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.wrks.ai%2Fko%2F&sa=D&sntz=1&usg=AOvVaw1I1yQgDus2LYl7MiqWN07T"><img
+                    src="https://lh3.googleusercontent.com/d/16Vrcne9D6hguAJBoLHYxRm0xcKSK2C8t"
+                    style="width:70px; height:70px;"><label>웍스AI</label></img>
+            </a>
+        </div>
+
+        <div id="support_tools">
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fstar.moe.go.kr%2Fweb%2Fmodule%2Futil_comm_pdfViewer.do%3FfileIdx%3DYenmn&sa=D&sntz=1&usg=AOvVaw2TEKbe3guttAXyzLWwu1sB"><img
+                    src="https://lh3.googleusercontent.com/d/1EU61FsgrHVoUdE5KrhZ3piS8LPQ6eBfN"><label>생기부
+                    기재요령</label>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1rzZd1NlpDDsF8Yr7UEAZMFdbx30mVCZ9zR3JHMsEKeU/edit?gid=1899838832#gid=1899838832"><img
+                    src="https://lh3.googleusercontent.com/d/1J9yQGe_-Y1-4d4_BJuBjxSP2G9TGH9i7
+" style="width:80px; height:80px;"><label>창체 일정관리</label></img>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1PTyya2QO3pcXEo4MBELt4C_bE73HlrZJcoS3KB5t9f0/edit?gid=147991571#gid=147991571"><img
+                    src="https://lh3.googleusercontent.com/d/1A874hdqBxRiUinDpzRr6UyHgc2Zt5sIY
+"><label>1학년 공동기록</label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/1dbtB4bx7r8Wbp0kfT2glTZ9CQT1K2EIUx25S7hiQy78/edit?gid=147991571#gid=147991571"><img
+                    src="https://lh3.googleusercontent.com/d/18NaXG_ylW3f1-4-884UBcP4g_bGwoTbt
+"><label>2학년 공동기록 </label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/15VyDnti5SeLI7Qux3shfXvdeobsmfN_mzeTLzsM5LxE/edit?gid=147991571#gid=147991571"><img
+                    src="https://lh3.googleusercontent.com/d/1iSpGSXCgdpB6xSHszPElwicntYvVUey9
+"><label>3학년 공동기록 </label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/11ANVuRgjslnxTiqwBiLA7wbNO1_7bjjhDlZpfyreTHY/edit?gid=207909200#gid=207909200"><img
+                    src="https://lh3.googleusercontent.com/d/13p2OzcAUbH5ptMO5c9JMJ2U2td4a-69I
+" style="width:80px; height:80px;"><label>동아리 관리</label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/1LGI71rr07zoqHsoDW2QGByAuy84FboSaQXqO-ZCf3Q8/edit?gid=0#gid=0"><img
+                    src="https://lh3.googleusercontent.com/d/1qwhg7Q_IekhdlaCmI0zMVtXJOTCipeba
+" style="width:70px; height:70px;"><label>봉사도우미 관리</label></img>
+            </a>
+
+            <a
+                href="https://sites.google.com/u/0/d/1H2FHHn4PfjAujI15ETVgvSJD-CyzHXd0/p/18KUN-GRTgjMEP9oNDSxlpKVH2SCaYXae/preview?authuser=0"><img
+                    src="https://lh3.googleusercontent.com/d/1XGIXmmaXZIEDVuepBXUsmqAFhOEep2Fp"
+                    style="width:80px; height:80px;"><label>월별 봉사
+                    관리</label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/15D5vsumcy_KH2c1MLQfxtFZur1kuG2xCqaQbs2ZrDr8/edit?gid=0#gid=0"><img
+                    src="https://lh3.googleusercontent.com/d/1FzKWKkHrDUmRR4CztdrbttX18JwZ5BNW"><label>방과후
+                    관리</label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/1bAkOZRje7LA4r1MRMPmj01SYLtXdTc7FHIC3vglj9DQ/edit?gid=1257012137#gid=1257012137"><img
+                    src="https://lh3.googleusercontent.com/d/1YlJgH5inxH5QucqSnjU8Xs29sptI3fKc"><label>캘린더
+                    입력</label></img>
+            </a>
+
+            <a
+                href="https://docs.google.com/spreadsheets/d/1KuM0cQRHNluLzbIw69nwGPgwaIhIxy0_R6b5ybDL5bA/edit?usp=sharing"><img
+                    src="https://lh3.googleusercontent.com/d/1w2wWFag1j5r3Ato75gGf5kSW4pUnWs1U
+" style="width:90px; height:90px; border-radius:20px;"><label>클래스룸 GPT</label></img>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1APwebw4DNqOCEKl9Elu02UHzLijsGP8SVEXYVyGbJAA/edit?usp=sharing"><img
+                    src="https://lh3.googleusercontent.com/d/1juPjTRk4kUd6Ha4sYJzzuaGh2RRMh1-T"><label>교과협의록
+                    양식</label></img>
+            </a>
+            <a href="https://drive.google.com/file/d/1P_tVaPU9kfVX24Rvb-BjEbdzcy6QRZtC/view?usp=drive_link"><img
+                    src="https://lh3.googleusercontent.com/d/13COos18C5SkVcey8f7D9j7JDFtE7Pvj6"><label>결보강
+                    신청서</label></img>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1vsxSlDjeJm4pryolJrjEptcufz-SzVVIuzYbb77cxF4/edit?gid=383549459#gid=383549459"><img
+                    src="https://lh3.googleusercontent.com/d/1aFYCVB2NSore_muD_Ed4DYutLn52Bew8"
+                    style="width:80px; height:80px;"><label>월간/주간업무</label></img>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1roswJMKTfwrHiE_V6u9sOliExR84QO4kHS0IhfJ7W0c/edit?gid=918130918#gid=918130918"><img
+                    src="https://lh3.googleusercontent.com/d/10rSe_iwUqTlk35wE0x8otBJSlYx0UCoO"><label>정보부
+                    안내시트</label></img>
+            </a>
+            <a
+                href="https://docs.google.com/spreadsheets/d/1V4V--pR40SatL7-1_UBMz1w-o17yI7BdBd6J95UUiXM/edit?gid=2010652431#gid=2010652431"><img
+                    src="https://lh3.googleusercontent.com/d/10pOC-6gZz5LUHdGut1-q2D4R-NUoaL9g"><label>학적현황</label></img>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/0ABdhQ-fHMUGqUk9PVA"><img
+                    src="https://lh3.googleusercontent.com/d/1tF5yr-vsFQl9VJh_E9JqedJqDpEmw4sa"
+                    style="width:95px; height:95px; border-radius:20px;"><label>교무실
+                    드라이브</label></img>
+            </a>
+            <a href="https://drive.google.com/drive/folders/0ALc7UCp6eZ_hUk9PVA"><img
+                    src="https://lh3.googleusercontent.com/d/1tF5yr-vsFQl9VJh_E9JqedJqDpEmw4sa"
+                    style="width:95px; height:95px; border-radius:20px;"><label>교실
+                    드라이브</label></img>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fread365.edunet.net%2FPureScreen%2FSchoolSearch%3FschoolName%3D%25EC%2583%2588%25EB%25A1%25AC%25EA%25B3%25A0%25EB%2593%25B1%25ED%2595%2599%25EA%25B5%2590%26provCode%3DI10%26neisCode%3DI100000162&sa=D&sntz=1&usg=AOvVaw2LY2ynoE9zponmGoelJEjj"><img
+                    src="https://lh3.googleusercontent.com/d/1IBaN8EXTcsom3d1hJRblpv2-Tp2gVymE
+" style="height: 40px; width:70px;"><label>우리학교 도서검색</label></img>
+            </a>
+        </div>
+
+        <div id="google_tools">
+            <a href="https://www.google.com/?hl=ko"><img src="https://lh3.googleusercontent.com/d/1UGkPQo6T-7EhQh_nS5YfnFpdQivh6elb
+"><label>구글검색</label>
+            </a>
+
+            <a href="https://classroom.google.com/"><img src="https://lh3.googleusercontent.com/d/12Fwxr8w7vtlehwuB3VaqN7uKSDw0ULOb
+"><label>클래스룸</label>
+            </a>
+
+            <a href="https://drive.google.com/drive/home"><img src="https://lh3.googleusercontent.com/d/1uXFnBW1yCqO35iW-rndP8PSywxRvz9XR
+"><label>드라이브</label>
+            </a>
+
+            <a href="https://docs.google.com/spreadsheets/"><img src="https://lh3.googleusercontent.com/d/1-gLRpvYwhho3upZcjK9vBtRA1dfIhSmR
+"><label>시트</label>
+            </a>
+
+            <a href="https://mail.google.com/mail/u/0/#inbox"><img src="https://lh3.googleusercontent.com/d/1alN65in8G1PlVBPn_6mHF_nDWUV1rzWV
+"><label>G메일</label>
+            </a>
+
+            <a href="https://www.youtube.com/"><img src="https://lh3.googleusercontent.com/d/1zKI-yzbL8E-0V-lO-zJ5rptpcsCeO1zc
+" style="height: 40px;"><label>유튜브</label>
+            </a>
+
+            <a href="https://mail.google.com/chat/"><img src="https://lh3.googleusercontent.com/d/11CqfoS7Z4ZH79WQNDknTq-sMzwL78KsH
+"><label>구글챗</label>
+            </a>
+
+            <a href="https://docs.google.com/presentation/"><img
+                    src="https://lh3.googleusercontent.com/d/1ROJCLRQov32j3Ljp-tbbi-gY1pdSW7KL"><label>슬라이드</label>
+            </a>
+
+            <a href="https://docs.google.com/document/"><img src="https://lh3.googleusercontent.com/d/1C3EJSrLQg8INySaDzHbP73LGE16wD1GB
+"><label>문서</label>
+            </a>
+
+            <a href="https://docs.google.com/forms/"><img src="https://lh3.googleusercontent.com/d/1jUXI_CT_n5NsYCIDIgZpBX4A34Az_Rm3
+"><label>설문</label>
+            </a>
+        </div>
+
+        <div id="edutech_tools">
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.canva.com%2F&sa=D&sntz=1&usg=AOvVaw11CGIoLHCqm5-8GAFqRorP"><img
+                    src="https://lh3.googleusercontent.com/d/14erb-vDIQSLHbEWBVEHl1g5iZ1aC8f-y"><label>캔바</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.miricanvas.com%2F&sa=D&sntz=1&usg=AOvVaw2OC6igRQggqpCIl4j3RKTM"><img
+                    src="https://lh3.googleusercontent.com/d/1JcUPSdO3dP1vEmhSDW09F3gOM1ElDutI
+"><label>미리캔버스</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fquizizz.com%2F&sa=D&sntz=1&usg=AOvVaw1ZXPbisOUr-QXnR8Ndn4Ul"><img
+                    src="https://lh3.googleusercontent.com/d/1McLBaehKzoTRRBMx5ecji5e8SQay_pdQ"><label>퀴지즈</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fteacher.focuspang.com%2Fko%2Flogin&sa=D&sntz=1&usg=AOvVaw2n48LwmjG9kjnrIgeus6LV"><img
+                    src="https://lh3.googleusercontent.com/d/1DNeEuvjYG2TjGoNx0BXfUo2WQJcL8Z6q
+"><label>포커스팡(모니터링)</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fpadlet.com%2F&sa=D&sntz=1&usg=AOvVaw2_IspiGwLYeexQXVYO-P4X"><img
+                    src="https://lh3.googleusercontent.com/d/1uSKOGaYn2ico75q2arK1QxPrOp86Nqlz
+"><label>패들렛</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fkahoot.com%2F&sa=D&sntz=1&usg=AOvVaw3JoWAg1Mgv-ysd8T25ORi2"><img
+                    src="https://lh3.googleusercontent.com/d/17Okwa2iwDTD0tnHWetixINlhAQfxQBdq
+" style="height: 30px; width:70px;"><label>카훗</label>
+            </a>
+            <a href="https://www.google.com/url?q=https%3A%2F%2F1hour.ai&sa=D&sntz=1&usg=AOvVaw37K5h41HlMYYFEyKuUPEY7"><img
+                    src="https://lh3.googleusercontent.com/d/15Qbwz1Mr-cEQGHHSSWJCRkfJsY44xOop
+"><label>원아워</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.kamiapp.com%2F&sa=D&sntz=1&usg=AOvVaw16u7ls8shWp-dpuDBqIcD0"><img
+                    src="https://lh3.googleusercontent.com/d/1TUs1OJE_gLRCPdOQp3V5xR91zbU3eDmo
+"><label>KAMI</label>
+            </a>
+        </div>
+
+        <div id="communication_tools">
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fv4.schoolbell-e.com%2Fko%2Fgate%2Fhome&sa=D&sntz=1&usg=AOvVaw1O5upmSuOnfr8qxsfwo-SA"><img
+                    src="https://lh3.googleusercontent.com/d/1_CGS5dtIr0xnV6aSEZZaw5SKAp3-OTu0"><label>학교종이</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fsites.google.com%2Fsaerom.hs.kr%2Fteacher25%2F%25ED%2595%2599%25EA%25B8%2589-%25EA%25B5%25AC%25EA%25B8%2580%25EC%25B1%2597&sa=D&sntz=1&usg=AOvVaw3jmK3iPo44utRbTRDP0JBs"><img
+                    src="https://lh3.googleusercontent.com/d/1GDlQ7qcGisb5gbZjOtDD-jAoivHIqrvo
+"><label>학급구글챗</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fsites.google.com%2Fsaerom.hs.kr%2Fmain%2F&sa=D&sntz=1&usg=AOvVaw1Q47E0J4xqsryKJWnRUNSI"><img
+                    src="https://lh3.googleusercontent.com/d/1qTZsgBEjNqSP7aTKlAaB7jH8XW2zkB1r"><label>학생
+                    사이트</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fteachercall.kr%2F&sa=D&sntz=1&usg=AOvVaw2vHhgL-6VLeY4iCjFjuabH"><img
+                    src="https://lh3.googleusercontent.com/d/1pFM9eJa9q85mj0aWeqauaO5vswI5DIQC
+"><label>티처콜</label>
+            </a>
+        </div>
+
+        <div id="etcetera_tools">
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.naver.com%2F&sa=D&sntz=1&usg=AOvVaw1nPMUPU5CyQ_G_X-MSTko3"><img
+                    src="https://lh3.googleusercontent.com/d/1cr1U2Wk4FurkVbORP_rQ0lG-35kf_PIA
+"><label>네이버</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.gwp.or.kr%2Fwus%2Fcmmn%2Flgn%2Flogin.jdo&sa=D&sntz=1&usg=AOvVaw2Tafb83G4SU57HNYUpoKTW"><img
+                    src="https://lh3.googleusercontent.com/d/1lR1QDLFPeqMUZSSQEfSla7zBNvlMo9t0"
+                    style="height: 25px; width: 90px;"><label>맞춤형복지</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.gmarket.co.kr%2F&sa=D&sntz=1&usg=AOvVaw2294RBstwMx3cLQd3GbdXw"><img
+                    src="https://lh3.googleusercontent.com/d/1g7bGT6ATKIWe9qPXmusKZCgPGQsuHKXH
+"><label>지마켓</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.11st.co.kr%2F&sa=D&sntz=1&usg=AOvVaw1-LIXr8nVyHJNCcq5WAzT7"><img
+                    src="https://lh3.googleusercontent.com/d/1dQqf5u9QVIpNmdkOrJPYL9E4yAeLIBHj
+"><label>11번가</label>
+            </a>
+            <a
+                href="https://www.google.com/url?q=https%3A%2F%2Fwww.aladin.co.kr%2Fhome%2Fwelcome.aspx&sa=D&sntz=1&usg=AOvVaw0GUD72Ocooqm2mmEEiKeGm"><img
+                    src="https://lh3.googleusercontent.com/d/1w9-EnCDDdU_3iImP58l_1d3_2Qa2IGYh"
+                    style="width: 90px;"><label>알라딘</label>
+            </a>
+        </div>
+
+        <div id="ai_tools">
+            <a href="https://chatgpt.com/"><img
+                    src="https://lh3.googleusercontent.com/d/1S0LFDqgd06nWfHcGh3ZdG4pMe6t0MklW"><label>chatGPT</label>
+            </a>
+            <a href="https://gemini.google.com/app"><img
+                    src="https://lh3.googleusercontent.com/d/1ykISWAsFc17kZ8QL6v0_C4u0_kcG8EaI"><label>구글
+                    제미나이</label>
+            </a>
+            <a href="https://notebooklm.google/"><img
+                    src="https://lh3.googleusercontent.com/d/1isYqTw6e27wqXRhdXjufD1JXcSCNiUPb"
+                    style="height: 80px; width: 80px;"><label>노트북LM</label>
+            </a>
+            <a href="https://suno.com/"><img
+                    src="https://lh3.googleusercontent.com/d/1EVj7HBJ8A__6IsN8L7Tm67fJ0u57zVx2"><label>Suno
+                    AI</label>
+            </a>
+            <a href="https://www.napkin.ai/"><img
+                    src="https://lh3.googleusercontent.com/d/1u2UE8DeLQkYqbJ6RWS_SxOoW5Bg7cMNx"><label>Napkin
+                    AI</label>
+            </a>
+            <a href="https://claude.ai/new"><img
+                    src="https://lh3.googleusercontent.com/d/1MVkpH7FwXXqIK4vhxq-_RnnYDZQzPg2A"><label>클로드
+                    AI</label>
+            </a>
+            <a href="https://claude.ai/new"><img
+                    src="https://lh3.googleusercontent.com/d/1mxSGOLj5G7AHM7-NyDbhLclcB94CT3gg"><label>퍼플렉시티</label>
+            </a>
+            <a href="https://gamma.app/"><img
+                    src="https://lh3.googleusercontent.com/d/1WY_4m8OsMM3UzBNepM2vUUJiQK4JT8ec"><label>감마
+                    AI</label>
+            </a>
+            <a href="https://www.hailuo.ai/audio"><img
+                    src="https://lh3.googleusercontent.com/d/1EOBUH4SboCqrowlAhm88OYSQUb8joErx"><label>Hailuo
+                    AI</label>
+            </a>
+        </div>
+
+        <div id="training_tools">
+            <a href="https://www.neti.go.kr/main.do"><img
+                    src="https://lh3.googleusercontent.com/d/13o72tsO71BmCqvgChyRCgGd2aOkrKZyw"
+                    style="width: 80px; height: 80px;"><label>중앙교육연수원</label>
+            </a>
+            <a href="https://teacher.i-scream.co.kr/index.do?sso=ok"><img
+                    src="https://lh3.googleusercontent.com/d/1rPLwTuYRw_j0a28q9F8jjFi15yClc6mT"
+                    style="width:70px; height:70px;"><label>아이스크림연수원</label>
+            </a>
+            <a href="https://www.tschool.net/"><img
+                    src="https://lh3.googleusercontent.com/d/1ocZYkXa9wndE45vDBWcp75PtAysxCiXz"><label>비바쌤연수원</label>
+            </a>
+            <a href="https://www.teacherville.co.kr/index.edu"><img
+                    src="https://lh3.googleusercontent.com/d/1TbiVtZFDYrv8ENHV5sf7Slob9QaaUNb9"
+                    style="width: 70px; height: 70px;"><label>티처빌연수원</label>
+            </a>
+            <a href="https://www.hstudy.co.kr/"><img
+                    src="https://lh3.googleusercontent.com/d/18XvjerncIxEGGTSkqJnPgpOZ307E8wLL"><label>한국교원연수원</label>
+            </a>
+            <a href="https://www.sjti.kr/main.do"><img
+                    src="https://lh3.googleusercontent.com/d/1M_pe7YsHR0nhdqswmu8dUBQBsU_Oki3v"><label>세종교육연수원</label>
+            </a>
+            <a href="https://lms.kosac.re.kr/front/main/index.do"><img
+                    src="https://lh3.googleusercontent.com/d/1HKfQV2sEJTkClstm1XVw05L1ar2_41mq"><label>창의재단연수원</label>
+            </a>
+        </div>
+
+        <br>
+
+        <div id="producer" style="width:90%; margin-left: 2.5%">
+            <hr>
+            <p style="color: #999999; margin: 0; padding: 0;">made by 테크웍스</p>
+            <ul
+                style="padding-left: 20px; margin: 5px 0; display: flex; flex-wrap: wrap; gap: 30px; list-style-type: disc; list-style-position: inside; color: #999999;">
+                <li>한도경</li>
+                <li>강민서</li>
+                <li>류우현</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="blur-overlay"></div>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script>
+        const suggestions = [
+            "구글", "google", "클래스룸", "classroom", "드라이브", "drive", "지메일", "gmail",
+            "챗", "chat", "맵", "maps", "캘린더", "calendar", "슬라이드", "slides", "킵", "keep",
+            "시트", "sheets", "독스", "문서", "docs", "사이트", "sites", "폼", "forms", "코랩", "colab",
+            "학술 검색", "scholar", "번역기", "translate", "캔바", "canva", "미리캔버스", "miricanvas",
+            "한컴독스", "hancom docs", "클립챔프", "clipchamp", "프로그래마이즈", "programize",
+            "폴라리스 오피스", "polaris office", "북크리에이터", "book creator", "틴커캐드", "tinkercad",
+            "피그마", "figma", "네이버", "naver", "네이버 어학사전", "naver dictionary", "나무위키", "namuwiki",
+            "위키백과", "wikipedia", "디비피아", "dbpia", "빅카인즈", "bigkinds", "통계청", "kostat",
+            "세종도서관", "독서로", "챗지피티", "chatgpt", "퍼플렉시티", "perplexity", "제미나이", "gemini",
+            "감마", "gamma", "냅킨", "napkin", "수노", "suno", "클로드", "claude", "이비에스아이", "ebsi",
+            "kmooc", "칸 아카데미", "khan academy", "테드", "ted", "울프람알파", "wolframalpha",
+            "구름", "goorm", "커리어넷", "careernet", "어디가", "adiga", "majormap", "메이저맵",
+            "대학알리미", "고용24", "work24", "학교종이", "나이스플러스", "neisplus", "함께학교",
+            "새롬고 홈페이지", "한컴타자", "hancom taja", "컴시간", "마음진단", "포커스팡", "focuspang",
+            "패들렛", "퀴지즈", "포커스팡(모니터링)", "나이스", "업무포털", "에듀파인", "EVPN",
+            "세종교육청", "새롬고등학교", "티처콜", "hailuo", "생기부 기재요령", "창체 일정관리",
+            "1학년 공동기록", "2학년 공동기록", "3학년 공동기록", "동아리 관리", "봉사도우미 관리",
+            "월별 봉사 관리", "방과후 관리", "캘린더 입력", "클래스룸 GPT", "교과협의록 양식",
+            "결보강 신청서", "정보부 안내시트", "학적 현황", "교무실 드라이브", "교실 드라이브",
+            "우리학교 도서 검색", "맞춤형복지", "지마켓", "11번가", "알라딘", "중앙교육연수원",
+            "아이스크림연수원", "비바쌤연수원", "티처빌연수원", "한국교원연수원", "세종교육연수원", "창의재단연수원"
+        ];
+
+        let currentFocus = -1;
+
+        function getInitialConsonants(word) {
+            const initial = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+            return Array.from(word).map(ch => {
+                const code = ch.charCodeAt(0) - 44032;
+                return code >= 0 && code <= 11171
+                    ? initial[Math.floor(code / 588)]
+                    : ch;
+            }).join('');
+        }
+
+        function showSuggestions() {
+            const input = document.getElementById('inputField').value;
+            const val = input.toLowerCase();
+            const list = document.getElementById('suggestionList');
+            list.innerHTML = '';
+            currentFocus = -1;
+            if (!val) { list.style.display = 'none'; return; }
+
+            const isInitialSearch = /^[ㄱ-ㅎ]+$/.test(input);
+            const init = isInitialSearch ? val : getInitialConsonants(val);
+
+            const matches = suggestions.filter(sugg => {
+                const low = sugg.toLowerCase();
+                if (isInitialSearch) {
+                    return getInitialConsonants(low).includes(init);
+                } else {
+                    return low.includes(val);
+                }
+            });
+
+            if (matches.length) {
+                matches.forEach(text => {
+                    const li = document.createElement('li');
+                    li.textContent = text;
+                    li.onclick = () => {
+                        document.getElementById('inputField').value = text;
+                        list.style.display = 'none';
+                        printLink();
+                    };
+                    list.appendChild(li);
+                });
+                list.style.display = 'block';
+            } else {
+                list.innerHTML = '<p>검색 결과가 없습니다.</p>';
+                list.style.display = 'block';
+            }
+        }
+
+        function addActive(items) {
+            if (!items) return;
+            removeActive(items);
+            if (currentFocus >= items.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = items.length - 1;
+            items[currentFocus].classList.add('active');
+            items[currentFocus].scrollIntoView({ block: 'nearest' });
+        }
+        function removeActive(items) {
+            Array.from(items).forEach(i => i.classList.remove('active'));
+        }
+
+        function checkEnterKey(e) {
+            const list = document.getElementById('suggestionList');
+            const items = list.getElementsByTagName('li');
+            if (e.key === 'ArrowDown') {
+                currentFocus++;
+                addActive(items);
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                currentFocus--;
+                addActive(items);
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (currentFocus > -1 && items[currentFocus]) {
+                    items[currentFocus].click();
+                } else {
+                    printLink();
+                }
+                list.style.display = 'none';
+            }
+        }
+
+        function printLink() {
+            const input = document.getElementById('inputField').value.trim();
+            const links = {
+                "구글": "https://www.google.com/",
+                "google": "https://www.google.com/",
+                "클래스룸": "https://classroom.google.com/",
+                "classroom": "https://classroom.google.com/",
+                "드라이브": "https://drive.google.com/",
+                "drive": "https://drive.google.com/",
+                "지메일": "https://mail.google.com/",
+                "gmail": "https://mail.google.com/",
+                "챗": "https://mail.google.com/chat/",
+                "chat": "https://mail.google.com/chat/",
+                "맵": "https://www.google.com/maps",
+                "maps": "https://www.google.com/maps",
+                "캘린더": "https://calendar.google.com/",
+                "calendar": "https://calendar.google.com/",
+                "슬라이드": "https://docs.google.com/presentation/",
+                "slides": "https://docs.google.com/presentation/",
+                "킵": "https://keep.google.com/",
+                "keep": "https://keep.google.com/",
+                "시트": "https://docs.google.com/spreadsheets/",
+                "sheets": "https://docs.google.com/spreadsheets/",
+                "독스": "https://docs.google.com/document/",
+                "문서": "https://docs.google.com/document/",
+                "docs": "https://docs.google.com/document/",
+                "사이트": "https://sites.google.com/",
+                "sites": "https://sites.google.com/",
+                "폼": "https://docs.google.com/forms/",
+                "forms": "https://docs.google.com/forms/",
+                "코랩": "https://colab.research.google.com/",
+                "colab": "https://colab.research.google.com/",
+                "학술 검색": "https://scholar.google.co.kr/schhp",
+                "scholar": "https://scholar.google.co.kr/schhp",
+                "번역기": "https://translate.google.com/",
+                "translate": "https://translate.google.com/",
+                "캔바": "https://www.canva.com/ko_kr/",
+                "canva": "https://www.canva.com/ko_kr/",
+                "미리캔버스": "https://www.miricanvas.com/",
+                "miricanvas": "https://www.miricanvas.com/",
+                "한컴독스": "https://www.hancomdocs.com/ko/home",
+                "hancom docs": "https://www.hancomdocs.com/ko/home",
+                "클립챔프": "https://app.clipchamp.com/login",
+                "clipchamp": "https://app.clipchamp.com/login",
+                "프로그래마이즈":
+                    "https://www.programiz.com/python-programming/online-compiler/",
+                "programize":
+                    "https://www.programiz.com/python-programming/online-compiler/",
+                "폴라리스 오피스": "https://www.polarisoffice.com/ko/personal/officeweb",
+                "polaris office":
+                    "https://www.polarisoffice.com/ko/personal/officeweb",
+                "북크리에이터": "https://bookcreator.com/", "book creator":
+                    "https://bookcreator.com/",
+                "틴커캐드":
+                    "https://www.tinkercad.com/", "tinkercad": "https://www.tinkercad.com/",
+                "피그마": "https://www.figma.com/ko-kr/", "figma": "https://www.figma.com/ko-kr/",
+                "네이버": "https://www.naver.com/", "naver": "https://www.naver.com/",
+                "naver": "https://www.naver.com/",
+                "네이버 어학사전": "https://dict.naver.com/",
+                "naver dictionary": "https://dict.naver.com/",
+                "나무위키": "https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8C%80%EB%AC%B8",
+                "namuwiki": "https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8C%80%EB%AC%B8",
+                "위키백과": "https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8",
+                "wikipedia": "https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8",
+                "디비피아": "https://www.dbpia.co.kr/",
+                "dbpia": "https://www.dbpia.co.kr/",
+                "빅카인즈": "https://www.bigkinds.or.kr/",
+                "bigkinds": "https://www.bigkinds.or.kr/",
+                "통계청": "https://kostat.go.kr/ansk/",
+                "kostat": "https://kostat.go.kr/ansk/",
+                "세종도서관": "https://lib.sejong.go.kr/portal/",
+                "독서로": "https://read365.edunet.net/PureScreen/SchoolSearch?schoolName=%EC%83%88%EB%A1%AC%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90&provCode=I10&neisCode=I100000162",
+                "챗지피티": "https://chatgpt.com/",
+                "chatgpt": "https://chatgpt.com/",
+                "퍼플렉시티": "https://www.perplexity.ai/",
+                "perplexity": "https://www.perplexity.ai/",
+                "제미나이": "https://gemini.google.com/app?hl=ko",
+                "gemini": "https://gemini.google.com/app?hl=ko",
+                "감마": "https://gamma.app/",
+                "gamma": "https://gamma.app/",
+                "냅킨": "https://www.napkin.ai/",
+                "napkin": "https://www.napkin.ai/",
+                "수노": "https://suno.com/home",
+                "suno": "https://suno.com/home",
+                "클로드": "https://claude.ai/new",
+                "claude": "https://claude.ai/new",
+                "이비에스아이": "https://www.ebsi.co.kr/ebs/pot/poti/main.ebs",
+                "ebsi": "https://www.ebsi.co.kr/ebs/pot/poti/main.ebs",
+                "kmooc": "https://www.kmooc.kr/",
+                "칸 아카데미": "https://ko.khanacademy.org/",
+                "khan academy": "https://ko.khanacademy.org/",
+                "테드": "https://www.ted.com/",
+                "ted": "https://www.ted.com/",
+                "울프람알파": "https://www.wolframalpha.com/",
+                "wolframalpha": "https://www.wolframalpha.com/",
+                "구름": "https://saerom-hs.goorm.io/",
+                "goorm": "https://saerom-hs.goorm.io/",
+                "커리어넷": "https://www.career.go.kr/cloud/w/main/home",
+                "careernet": "https://www.career.go.kr/cloud/w/main/home",
+                "어디가": "https://www.adiga.kr/man/inf/mainView.do?menuId=PCMANINF1000",
+                "adiga": "https://www.adiga.kr/man/inf/mainView.do?menuId=PCMANINF1000",
+                "majormap": "https://www.majormap.net/",
+                "메이저맵": "https://www.majormap.net/",
+                "대학알리미": "https://www.academyinfo.go.kr/index.do",
+                "고용24": "https://www.work24.go.kr/cm/main.do",
+                "work24": "https://www.work24.go.kr/cm/main.do",
+                "학교종이": "https://v4.schoolbell-e.com/ko/gate/home",
+                "나이스플러스": "https://neisplus.kr/",
+                "neisplus": "https://neisplus.kr/",
+                "함께학교": "https://www.togetherschool.go.kr/",
+                "새롬고 홈페이지": "https://saerom.sjeduhs.kr/saerom-h/main.do?sso=ok",
+                "한컴타자": "https://www.hancomtaja.com/ko",
+                "hancom taja": "https://www.hancomtaja.com/ko",
+                "컴시간": "http://comci.net:4082/st",
+                "마음진단": "https://sites.google.com/saerom.hs.kr/depression-test/%EB%A7%88%EC%9D%8C-%EC%A7%84%EB%8B%A8",
+                "포커스팡": "https://student.focuspang.com/ko/login",
+                "focuspang": "https://student.focuspang.com/ko/login",
+                "패들렛": "https://padlet.com/", "padlet": "https://padlet.com/",
+                "퀴지즈": "https://quizizz.com/", "quizizz": "https://quizizz.com/",
+                "포커스팡(모니터링)": "https://teacher.focuspang.com/ko/login",
+                "나이스": "https://sje.neis.go.kr/",
+                "업무포털": "https://sje.eduptl.kr/bpm_man_mn00_001.do",
+                "에듀파인": "https://klef.sje.go.kr/keris_ui/login.do",
+                "EVPN": "https://evpn.sje.go.kr/custom/index.html",
+                "세종교육청": "https://www.sje.go.kr/sje/index.do",
+                "새롬고등학교": "https://saerom.sjeduhs.kr/saerom-h/main.do?sso=ok",
+                "티처콜": "https://teachercall.kr/",
+                "hailuo": "https://www.hailuo.ai/audio",
+                "생기부 기재요령": "https://star.moe.go.kr/web/module/util_comm_pdfViewer.do?fileIdx=Yenmn",
+                "창체 일정관리": "https://docs.google.com/spreadsheets/d/1rzZd1NlpDDsF8Yr7UEAZMFdbx30mVCZ9zR3JHMsEKeU/edit#gid=1899838832",
+                "1학년 공동기록": "https://docs.google.com/spreadsheets/d/1PTyya2QO3pcXEo4MBELt4C_bE73HlrZJcoS3KB5t9f0/edit#gid=147991571",
+                "2학년 공동기록": "https://docs.google.com/spreadsheets/d/1dbtB4bx7r8Wbp0kfT2glTZ9CQT1K2EIUx25S7hiQy78/edit#gid=147991571",
+                "3학년 공동기록": "https://docs.google.com/spreadsheets/d/15VyDnti5SeLI7Qux3shfXvdeobsmfN_mzeTLzsM5LxE/edit#gid=147991571",
+                "동아리 관리": "https://docs.google.com/spreadsheets/d/11ANVuRgjslnxTiqwBiLA7wbNO1_7bjjhDlZpfyreTHY/edit#gid=207909200",
+                "봉사도우미 관리": "https://docs.google.com/spreadsheets/d/1LGI71rr07zoqHsoDW2QGByAuy84FboSaQXqO-ZCf3Q8/edit#gid=0",
+                "월별 봉사 관리": "https://sites.google.com/u/0/d/1H2FHHn4PfjAujI15ETVgvSJD-CyzHXd0/p/18KUN-GRTgjMEP9oNDSxlpKVH2SCaYXae/preview",
+                "방과후 관리": "https://docs.google.com/spreadsheets/d/15D5vsumcy_KH2c1MLQfxtFZur1kuG2xCqaQbs2ZrDr8/edit#gid=0",
+                "캘린더 입력": "https://docs.google.com/spreadsheets/d/1bAkOZRje7LA4r1MRMPmj01SYLtXdTc7FHIC3vglj9DQ/edit#gid=1257012137",
+                "클래스룸 GPT": "https://docs.google.com/spreadsheets/d/1KuM0cQRHNluLzbIw69nwGPgwaIhIxy0_R6b5ybDL5bA/edit?usp=sharing",
+                "교과협의록 양식": "https://docs.google.com/spreadsheets/d/1APwebw4DNqOCEKl9Elu02UHzLijsGP8SVEXYVyGbJAA/edit?usp=sharing",
+                "결보강 신청서": "https://drive.google.com/file/d/1P_tVaPU9kfVX24Rvb-BjEbdzcy6QRZtC/view?usp=drive_link",
+                "월간/주간업무": "https://docs.google.com/spreadsheets/d/1vsxSlDjeJm4pryolJrjEptcufz-SzVVIuzYbb77cxF4/edit#gid=383549459",
+                "정보부 안내시트": "https://docs.google.com/spreadsheets/d/1roswJMKTfwrHiE_V6u9sOliExR84QO4kHS0IhfJ7W0c/edit#gid=918130918",
+                "학적 현황": "https://docs.google.com/spreadsheets/d/1V4V--pR40SatL7-1_UBMz1w-o17yI7BdBd6J95UUiXM/edit#gid=2010652431",
+                "교무실 드라이브": "https://drive.google.com/drive/u/0/folders/0ABdhQ-fHMUGqUk9PVA",
+                "교실 드라이브": "https://drive.google.com/drive/folders/0ALc7UCp6eZ_hUk9PVA",
+                "우리학교 도서 검색": "https://read365.edunet.net/PureScreen/SchoolSearch?schoolName=새롬고등학교&provCode=I10&neisCode=I100000162",
+                "맞춤형복지": "https://www.gwp.or.kr/wus/cmmn/lgn/login.jdo",
+                "지마켓": "https://www.gmarket.co.kr/",
+                "11번가": "https://www.11st.co.kr/",
+                "알라딘": "https://www.aladin.co.kr/home/welcome.aspx",
+                "중앙교육연수원": "https://www.neti.go.kr/main.do",
+                "아이스크림연수원": "https://teacher.i-scream.co.kr/index.do?sso=ok",
+                "비바쌤연수원": "https://www.tschool.net/",
+                "티처빌연수원": "https://www.teacherville.co.kr/index.edu",
+                "한국교원연수원": "https://www.hstudy.co.kr/",
+                "세종교육연수원": "https://www.sjti.kr/main.do",
+                "창의재단연수원": "https://lms.kosac.re.kr/front/main/index.do"
+            };
+
+            if (links[input]) {
+                window.open(links[input], '_blank');
+            } else {
+                alert('검색 결과가 없습니다.');
+            }
+        }
+
+        function toggleCalendar1() {
+            const iframe = document.querySelector("#calendar1 iframe");
+            const icon = document.getElementById("calendar1_icon");
+            const blurOverlay = document.getElementById("blur-overlay");
+
+            const isVisible = iframe.style.display === "block";
+
+            iframe.style.display = isVisible ? "none" : "block";
+            iframe.style.pointerEvents = isVisible ? "none" : "auto";
+
+            icon.textContent = isVisible ? "calendar_today" : "close";
+
+            if (blurOverlay) {
+                blurOverlay.style.display = isVisible ? "none" : "block";
+            }
+        }
+
+        function toggleCalendar2() {
+            const iframe = document.querySelector("#calendar2 iframe");
+            const icon = document.getElementById("calendar2_icon");
+            const blurOverlay = document.getElementById("blur-overlay");
+
+            const isVisible = iframe.style.display === "block";
+
+            iframe.style.display = isVisible ? "none" : "block";
+            iframe.style.pointerEvents = isVisible ? "none" : "auto";
+
+            icon.textContent = isVisible ? "calendar_today" : "close";
+
+            if (blurOverlay) {
+                blurOverlay.style.display = isVisible ? "none" : "block";
+            }
+        }
+
+        function toggleschedule() {
+            const iframe = document.querySelector("#schedule iframe");
+
+            const icon = document.getElementById("schedule_icon");
+
+            const blurOverlay = document.getElementById("blur-overlay");
+
+            const isVisible = iframe.style.display === "block";
+
+            iframe.style.display = isVisible ? "none" : "block";
+
+            iframe.style.pointerEvents = isVisible ? "none" : "auto";
+
+            icon.textContent = isVisible ? "schedule" : "close";
+
+            if (blurOverlay) {
+                blurOverlay.style.display = isVisible ? "none" : "block";
+            }
+        }
+
+        function togglemeals() {
+            const iframe = document.querySelector("#meals iframe");
+
+            const icon = document.getElementById("meals_icon");
+
+            const blurOverlay = document.getElementById("blur-overlay");
+
+            const isVisible = iframe.style.display === "block";
+
+            iframe.style.display = isVisible ? "none" : "block";
+
+            iframe.style.pointerEvents = isVisible ? "none" : "auto";
+
+            icon.textContent = isVisible ? "restaurant_menu" : "close";
+
+            if (blurOverlay) {
+                blurOverlay.style.display = isVisible ? "none" : "block";
+            }
+        }
+
+        document.addEventListener("click", function (event) {
+            const blurOverlay = document.getElementById("blur-overlay");
+
+            // CALENDAR2 처리
+            const calendar2Div = document.getElementById("calendar2");
+            const calendar2Button = document.getElementById("calendar2_button");
+            const calendar2Iframe = calendar2Div.querySelector("iframe");
+            const calendar2Icon = document.getElementById("calendar2_icon");
+
+            const calendar2Visible = calendar2Iframe.style.display === "block";
+
+            if (
+                calendar2Visible &&
+                !calendar2Div.contains(event.target) &&
+                !calendar2Button.contains(event.target)
+            ) {
+                calendar2Iframe.style.display = "none";
+                calendar2Iframe.style.pointerEvents = "none";
+                calendar2Icon.textContent = "campaign";
+            }
+
+            // CALENDAR1 처리
+            const calendar1Div = document.getElementById("calendar1");
+            const calendar1Button = document.getElementById("calendar1_button");
+            const calendar1Iframe = calendar1Div.querySelector("iframe");
+            const calendar1Icon = document.getElementById("calendar1_icon");
+
+            const calendar1Visible = calendar1Iframe.style.display === "block";
+
+            if (
+                calendar1Visible &&
+                !calendar1Div.contains(event.target) &&
+                !calendar1Button.contains(event.target)
+            ) {
+                calendar1Iframe.style.display = "none";
+                calendar1Iframe.style.pointerEvents = "none";
+                calendar1Icon.textContent = "calendar_today";
+            }
+
+            // SCHEDULE 처리
+            const scheduleDiv = document.getElementById("schedule");
+            const scheduleButton = document.getElementById("schedule_button");
+            const scheduleIframe = scheduleDiv.querySelector("iframe");
+            const scheduleIcon = document.getElementById("schedule_icon");
+
+            const scheduleVisible = scheduleIframe.style.display === "block";
+
+            if (
+                scheduleVisible &&
+                !scheduleDiv.contains(event.target) &&
+                !scheduleButton.contains(event.target)
+            ) {
+                scheduleIframe.style.display = "none";
+                scheduleIframe.style.pointerEvents = "none";
+                scheduleIcon.textContent = "schedule";
+            }
+
+            // MEALS 처리
+            const mealsDiv = document.getElementById("meals");
+            const mealsButton = document.getElementById("meals_button");
+            const mealsIframe = mealsDiv.querySelector("iframe");
+            const mealsIcon = document.getElementById("meals_icon");
+
+            const mealsVisible = mealsIframe.style.display === "block";
+
+            if (
+                mealsVisible &&
+                !mealsDiv.contains(event.target) &&
+                !mealsButton.contains(event.target)
+            ) {
+                mealsIframe.style.display = "none";
+                mealsIframe.style.pointerEvents = "none";
+                mealsIcon.textContent = "restaurant_menu";
+            }
+
+            // 🔍 blurOverlay는 세 개 중 하나라도 열린 상태일 때만 보임
+            const finalCalendar2Visible = document.querySelector("#calendar2 iframe").style.display === "block";
+
+            const finalCalendar1Visible = document.querySelector("#calendar1 iframe").style.display === "block";
+
+            const finalScheduleVisible = document.querySelector("#schedule iframe").style.display === "block";
+
+            const finalMealsVisible = document.querySelector("#meals iframe").style.display === "block";
+
+            if (blurOverlay) {
+                blurOverlay.style.display = (finalCalendar2Visible ||
+                    finalCalendar1Visible || finalScheduleVisible || finalMealsVisible) ? "block" : "none";
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
