@@ -1183,7 +1183,6 @@
         document.addEventListener("click", function (event) {
             const blurOverlay = document.getElementById("blur-overlay");
 
-            // CALENDAR2 처리
             const calendar2Div = document.getElementById("calendar2");
             const calendar2Button = document.getElementById("calendar2_button");
             const calendar2Iframe = calendar2Div.querySelector("iframe");
@@ -1201,7 +1200,6 @@
                 calendar2Icon.textContent = "campaign";
             }
 
-            // CALENDAR1 처리
             const calendar1Div = document.getElementById("calendar1");
             const calendar1Button = document.getElementById("calendar1_button");
             const calendar1Iframe = calendar1Div.querySelector("iframe");
@@ -1219,7 +1217,6 @@
                 calendar1Icon.textContent = "calendar_today";
             }
 
-            // SCHEDULE 처리
             const scheduleDiv = document.getElementById("schedule");
             const scheduleButton = document.getElementById("schedule_button");
             const scheduleIframe = scheduleDiv.querySelector("iframe");
@@ -1237,7 +1234,6 @@
                 scheduleIcon.textContent = "schedule";
             }
 
-            // MEALS 처리
             const mealsDiv = document.getElementById("meals");
             const mealsButton = document.getElementById("meals_button");
             const mealsIframe = mealsDiv.querySelector("iframe");
@@ -1255,7 +1251,6 @@
                 mealsIcon.textContent = "restaurant_menu";
             }
 
-            // 🔍 blurOverlay는 세 개 중 하나라도 열린 상태일 때만 보임
             const finalCalendar2Visible = document.querySelector("#calendar2 iframe").style.display === "block";
 
             const finalCalendar1Visible = document.querySelector("#calendar1 iframe").style.display === "block";
