@@ -1,7 +1,8 @@
 <h2><a href="https://sites.google.com/saerom.hs.kr/edu-main/홈">SAEROM-teacher.main</a></h2>
-<div>
-  <h2>Element</h2>
-  <p>검색창</p>
-  <p>사이드</p>
-  <p>앱 런처</p>
-</div>
+<h2>Purpose</h2>
+<p></p>
+
+<h2>Element</h2>
+<p>검색창</p>
+<p>사이드</p>
+<p>앱 런처</p>
