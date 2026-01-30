@@ -20,7 +20,7 @@
 <p>
     <img src="explain_img/My_Tech/HTML.jpeg" height="30px;"><img src="explain_img/My_Tech/CSS.jpeg" height="30px;"><img src="explain_img/My_Tech/JavaScript.jpeg" height="30px;">
     <br>
-    <img src="explain_img/My_Tool/Google_Sites.jpeg" height="30px;">
+    <img src="explain_img/My_Tool/Google_Apps_Script.jpeg" height="30px;"><img src="explain_img/My_Tool/Google_Sites.jpeg" height="30px;"><img src="explain_img/My_Tool/Google_Sheets.jpeg" height="30px;">
 </P>
 
 <h3>웹 런처</h3>
