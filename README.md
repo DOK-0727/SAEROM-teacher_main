@@ -18,6 +18,10 @@
 
 <h3>부가 기능</h3>
 <img src="explain_img/Element/additional_feature.png">
+<p>
+    <img src="explain_img/Element/additional_feature/lunch.png" height="195px;">
+    <img src="explain_img/Element/additional_feature/timetable.png" height="195px;">
+</p>
 <p>이 요소는 선생님들의 업무 편의성을 높일 수 있도록 자주 활용되는 보조 기능들을 하나의 환경에서 제공합니다.</p>
 <p>
     <img src="explain_img/My_Tech/HTML.jpeg" height="12px;">HTML
