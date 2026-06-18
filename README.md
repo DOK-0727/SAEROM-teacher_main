@@ -30,7 +30,7 @@
 </P>
 
 <h3>시간표</h3>
-<img src="image/Element/additional_feature/timetable.png">
+<img src="image/Element/timetable.png">
 <p>이 요소는 선생님들이 시간표를 빠르게 확인할 수 있는 기능을 제공합니다.</p>
 <p>
     <img src="image/My_Tech/HTML.jpeg" height="12px;">HTML
@@ -42,7 +42,7 @@
 </P>
 
 <h3>급식표</h3>
-<img src="image/Element/additional_feature/lunch.pngg">
+<img src="image/Element/lunch.png">
 <p>이 요소는 선생님들이 급식표를 빠르게 확인할 수 있는 기능을 제공합니다.</p>
 <p>
     <img src="image/My_Tech/HTML.jpeg" height="12px;">HTML
