@@ -50,7 +50,7 @@
 </tr>
 <tr>
 <td>운영 환경</td>
-<td>학교 크롬북</td>
+<td>학교 노트북</td>
 </tr>
 <tr>
 <td>사용자 수</td>
@@ -156,12 +156,13 @@
     이 요소는 교시들이 급식표를 빠르게 확인할 수 있는 기능을 제공합니다.
   </p>
   </details>
+</details>
 
 <details>
 <summary><b>웹 런처</b></summary>
 <br>
 <p align="center">
-  <img src="image/Element/web_launcher.png" height="150">
+  <img src="image/Element/web_launcher.png" height="75">
   <br>
   <img src="image/Tech/HTML.jpeg" height="12px;">HTML
   <img src="image/Tech/CSS.jpeg" height="12px;">CSS
