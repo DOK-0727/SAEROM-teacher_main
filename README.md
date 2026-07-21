@@ -137,7 +137,7 @@
     <img src="image/Tool/Google_Apps_Script.jpeg" height="12px;">Google Apps Script
     <img src="image/Tool/Google_Sheets.jpeg" height="12px;">Google Sheets
     <br>
-    이 요소는 교사들이 시간표를 빠르게 확인할 수 있는 기능을 제공합니다.
+    이 요소는 교사들이 시간표를 쉽게 확인할 수 있도록 시간표 기능을 제공합니다.
   </p>
   </details>
   <details>
