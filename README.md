@@ -106,7 +106,7 @@
   <br>
   <img src="image/Tool/Google_Sites.jpeg" height="12px;">Google Sites
   <br>
-  이 요소는 교사들이 필요한 사이트나 정보를 검색 기반으로 접근할 수 있는 기능을 제공합니다.
+  이 요소는 교사들이 필요한 사이트에 쉽게 접근할 수 있도록 검색창 기능을 제공합니다.
 </p>
 </details>
 
