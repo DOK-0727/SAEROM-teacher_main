@@ -106,7 +106,7 @@
   <br>
   <img src="image/Tool/Google_Sites.jpeg" height="12px;">Google Sites
   <br>
-  이 요소는 교사들이 필요한 사이트에 쉽게 접근할 수 있도록 검색창 기능을 제공합니다.
+  이 요소는 교사들이 필요한 사이트나 정보를 검색 기반으로 접근할 수 있는 기능을 제공합니다.
 </p>
 </details>
 
@@ -137,7 +137,7 @@
     <img src="image/Tool/Google_Apps_Script.jpeg" height="12px;">Google Apps Script
     <img src="image/Tool/Google_Sheets.jpeg" height="12px;">Google Sheets
     <br>
-    이 요소는 교사들이 시간표를 쉽게 확인할 수 있도록 시간표 기능을 제공합니다.
+    이 요소는 교사들이 시간표를 빠르게 확인할 수 있는 기능을 제공합니다.
   </p>
   </details>
   <details>
@@ -153,7 +153,7 @@
     <img src="image/Tool/Google_Apps_Script.jpeg" height="12px;">Google Apps Script
     <img src="image/Tool/Google_Sheets.jpeg" height="12px;">Google Sheets
     <br>
-    이 요소는 교사들이 급식표를 쉽게 확인할 수 있도록 급식표 기능을 제공합니다.
+    이 요소는 교시들이 급식표를 빠르게 확인할 수 있는 기능을 제공합니다.
   </p>
   </details>
 </details>
@@ -169,16 +169,22 @@
   <br>
   <img src="image/Tool/Google_Sites.jpeg" height="12px;">Google Sites
   <br>
-  이 요소는 교사들이 자주 사용하는 웹 사이트에 쉽게 접근할 수 있도록 웹 런처 기능을 제공합니다.
+  이 요소는 교사들이 자주 사용하는 웹 서비스를 빠르게 실행할 수 있도록 아이콘 기반의 웹 바로가기 기능을 제공합니다.
 </p>
 </details>
 
 ---
 
 ## 기여
+
+이 프로젝트는 TechWorks가 개발, 유지보수 하는 프로젝트입니다.
+<br>
 한도경, 강민서, 류우현
 
 ---
 
 ## 라이선스
+
 Copyright © 2025 SAEROM HIGH SCHOOL All rights reserved.
+<br>
+본 프로젝트의 소스 코드, 디자인, 이미지 및 관련 에셋에 대한 모든 권리는 새롬고등학교에 있습니다.
